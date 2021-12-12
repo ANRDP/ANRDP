@@ -42,6 +42,14 @@ _ = tree.plot_tree(clf,
                    filled=True)
 fig.savefig("decistion_tree.png")
 
+#Cross Validation
+number=10
+scores = cross_val_score(clf, features, target, cv=number)
 
+sum=0
+for i in scores:
+    sum += i
+
+average = sum/number
 
 
