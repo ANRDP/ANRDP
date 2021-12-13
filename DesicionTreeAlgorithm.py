@@ -15,10 +15,8 @@ print(dataframe.head)
 numeric = dataframe[["Age", "RestingBP", "Cholesterol", "FastingBS", "MaxHR", "Oldpeak", "HeartDisease"]]
 categorical = dataframe[["Sex", "ChestPainType", "RestingECG", "ExerciseAngina", "ST_Slope"]]
 
-encoder = preprocessing.LabelEncoder()
-new_data = dataframe.copy()
-for col in categorical:
-    dataframe[col] = encoder.fit_transform(dataframe[col])
+categorical = dataframe.select_dtypes(include=object).columns
+dataframe = pd.get_dummies(dataframe, columns=categorical, drop_first=True)
 
 print(dataframe.head)
 
