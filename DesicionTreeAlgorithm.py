@@ -41,7 +41,7 @@ fig.savefig("decistion_tree.png")
 
 #Cross Validation
 number=10
-scores = cross_val_score(clf, features, target, cv=number)
+scores = cross_val_score(clf, features, target, cv=number, scoring="f1")
 
 sum=0
 for i in scores:
