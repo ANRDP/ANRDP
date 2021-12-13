@@ -36,7 +36,6 @@ print("Accuracy: ", metrics.accuracy_score(target_test, target_predict))
 fig = plt.figure(figsize=(20,20))
 _ = tree.plot_tree(clf,
                    feature_names=features.columns,
-                   # class_names=iris.target_names,
                    filled=True)
 fig.savefig("decistion_tree.png")
 
