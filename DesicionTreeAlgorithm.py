@@ -5,7 +5,6 @@ import numpy as np
 from numpy import asarray
 from sklearn import metrics, preprocessing, tree
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import train_test_split, cross_val_score
 
 directory = getcwd()
