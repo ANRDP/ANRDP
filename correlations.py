@@ -12,6 +12,30 @@ yesNoDict = {'Y': 1, 'N': 0} #Categorical Variable Converted into Numerical
 dataframe.Sex = [genderDict[item] for item in dataframe.Sex]
 dataframe.ExerciseAngina = [yesNoDict[item] for item in dataframe.ExerciseAngina]
 
+#Cramer's V ChestPainType, RestingECG, ST_Slope
+crosstab1 = np.array(pd.crosstab(dataframe["RestingECG"], dataframe["ChestPainType"], rownames= None, colnames=None))
+crosstab2 = np.array(pd.crosstab(dataframe["RestingECG"], dataframe["ST_Slope"], rownames= None, colnames=None))
+crosstab3 = np.array(pd.crosstab(dataframe["ChestPainType"], dataframe["ST_Slope"], rownames= None, colnames=None))
+
+chi_1 = chi2_contingency(crosstab1)[0]
+chi_2 = chi2_contingency(crosstab2)[0]
+chi_3 = chi2_contingency(crosstab3)[0]
+
+obs1 = np.sum(crosstab1)
+obs2 = np.sum(crosstab2)
+obs3 = np.sum(crosstab3)
+
+minimum1 = min(crosstab1.shape)-1
+minimum2 = min(crosstab2.shape)-1
+minimum3 = min(crosstab3.shape)-1
+
+result1 = chi_1/(obs1*minimum1)
+result2 = chi_2/(obs2*minimum2)
+result3 = chi_3/(obs3*minimum3)
+
+print("RestingECG + ChestPainType", result1)
+print("RestingECG + ST_Slope", result2)
+print("ChestPainType + ST_Slope", result3)
 
 correlation_mat = dataframe.corr(method = 'kendall')
 correlation_mat2 = dataframe.corr(method = 'spearman')
