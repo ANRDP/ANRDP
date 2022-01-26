@@ -61,7 +61,7 @@ target = dataframe["HeartDisease"]
 features_train, features_test, target_train, target_test = train_test_split(features, target, test_size=0.2)
 column_names = features_train.columns
 
-LogReg = LogisticRegression(max_iter=100, solver='newton-cg')
+LogReg = LogisticRegression(max_iter=100, solver='lbfgs',penalty = 'l2',C=1)
 
 LogReg.fit(features_train, target_train)
 
